@@ -1,0 +1,3 @@
+[{
+  "keys": ["ctrl+shift+l"], "command": "jump_to_method"
+}]
