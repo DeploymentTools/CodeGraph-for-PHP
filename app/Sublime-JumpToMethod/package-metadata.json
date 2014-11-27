@@ -1,0 +1,1 @@
+{"description": "Will scan the active projects for code structure and inclusions, then generate a JSON log file.", "version": "1.0.0", "url": "https://github.com/bogdananton/PHP-CodeGraph"}

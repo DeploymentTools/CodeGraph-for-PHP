@@ -1,0 +1,1346 @@
+[
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "demo/Product.php",
+    "name": "$Code",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "demo/Product.php",
+    "name": "$Quantity",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "11",
+    "item": "class_method",
+    "file": "demo/Product.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Code",
+        "$this->Quantity"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "demo/Cart.php",
+    "name": "$Totals",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "demo/Cart.php",
+    "name": "$Items",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "10",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "16",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "addItem",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [
+        "$this->Items"
+      ],
+      "methods": [
+        "$this->refreshTotals"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$output",
+        "v": "\"HTML\""
+      }
+    ],
+    "access": "public",
+    "line": "22",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "debug",
+    "body": {
+      "generic": [],
+      "arrays": [],
+      "methods": [
+        "$this->test"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "27",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "refreshTotals",
+    "body": {
+      "generic": [
+        "$this->Items",
+        "$this->Totals"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "$Code",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "$Quantity",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "11",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Code",
+        "$this->Quantity"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "$Totals",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "$Items",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "10",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "16",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "addItem",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [
+        "$this->Items"
+      ],
+      "methods": [
+        "$this->refreshTotals"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$output",
+        "v": "\"HTML\""
+      }
+    ],
+    "access": "public",
+    "line": "22",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "debug",
+    "body": {
+      "generic": [],
+      "arrays": [],
+      "methods": [
+        "$this->test"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "27",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "refreshTotals",
+    "body": {
+      "generic": [
+        "$this->Items",
+        "$this->Totals"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "demo/Product.php",
+    "name": "$Code",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "demo/Product.php",
+    "name": "$Quantity",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "11",
+    "item": "class_method",
+    "file": "demo/Product.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Code",
+        "$this->Quantity"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "demo/Cart.php",
+    "name": "$Totals",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "demo/Cart.php",
+    "name": "$Items",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "10",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "16",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "addItem",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [
+        "$this->Items"
+      ],
+      "methods": [
+        "$this->refreshTotals"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$output",
+        "v": "\"HTML\""
+      }
+    ],
+    "access": "public",
+    "line": "22",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "debug",
+    "body": {
+      "generic": [],
+      "arrays": [],
+      "methods": [
+        "$this->test"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "27",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "refreshTotals",
+    "body": {
+      "generic": [
+        "$this->Items",
+        "$this->Totals"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "$Code",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "$Quantity",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "11",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Code",
+        "$this->Quantity"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "$Totals",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "$Items",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "10",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "16",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "addItem",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [
+        "$this->Items"
+      ],
+      "methods": [
+        "$this->refreshTotals"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$output",
+        "v": "\"HTML\""
+      }
+    ],
+    "access": "public",
+    "line": "22",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "debug",
+    "body": {
+      "generic": [],
+      "arrays": [],
+      "methods": [
+        "$this->test"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "27",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "refreshTotals",
+    "body": {
+      "generic": [
+        "$this->Items",
+        "$this->Totals"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "demo/Product.php",
+    "name": "$Code",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "demo/Product.php",
+    "name": "$Quantity",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "11",
+    "item": "class_method",
+    "file": "demo/Product.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Code",
+        "$this->Quantity"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "demo/Cart.php",
+    "name": "$Totals",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "demo/Cart.php",
+    "name": "$Items",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "10",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "16",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "addItem",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [
+        "$this->Items"
+      ],
+      "methods": [
+        "$this->refreshTotals"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$output",
+        "v": "\"HTML\""
+      }
+    ],
+    "access": "public",
+    "line": "22",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "debug",
+    "body": {
+      "generic": [],
+      "arrays": [],
+      "methods": [
+        "$this->test"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "27",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "refreshTotals",
+    "body": {
+      "generic": [
+        "$this->Items",
+        "$this->Totals"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "$Code",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "$Quantity",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "11",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Code",
+        "$this->Quantity"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "$Totals",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "$Items",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "10",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "16",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "addItem",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [
+        "$this->Items"
+      ],
+      "methods": [
+        "$this->refreshTotals"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$output",
+        "v": "\"HTML\""
+      }
+    ],
+    "access": "public",
+    "line": "22",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "debug",
+    "body": {
+      "generic": [],
+      "arrays": [],
+      "methods": [
+        "$this->test"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "27",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "refreshTotals",
+    "body": {
+      "generic": [
+        "$this->Items",
+        "$this->Totals"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "demo/Product.php",
+    "name": "$Code",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "demo/Product.php",
+    "name": "$Quantity",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "11",
+    "item": "class_method",
+    "file": "demo/Product.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Code",
+        "$this->Quantity"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "demo/Cart.php",
+    "name": "$Totals",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "demo/Cart.php",
+    "name": "$Items",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "10",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "16",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "addItem",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [
+        "$this->Items"
+      ],
+      "methods": [
+        "$this->refreshTotals"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$output",
+        "v": "\"HTML\""
+      }
+    ],
+    "access": "public",
+    "line": "22",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "debug",
+    "body": {
+      "generic": [],
+      "arrays": [],
+      "methods": [
+        "$this->test"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "27",
+    "item": "class_method",
+    "file": "demo/Cart.php",
+    "name": "refreshTotals",
+    "body": {
+      "generic": [
+        "$this->Items",
+        "$this->Totals"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "$Code",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "$Quantity",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Product",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "11",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Product.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Code",
+        "$this->Quantity"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "4",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "$Totals",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "access": "public",
+    "line": "5",
+    "item": "class_attribute",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "$Items",
+    "static": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "10",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "__construct",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$ProductCode",
+        "v": "\"\""
+      },
+      {
+        "n": "$Quantity",
+        "v": "1"
+      }
+    ],
+    "access": "public",
+    "line": "16",
+    "item": "class_method",
+    "file": "/PHP-CodeGraph/demo/Cart.php",
+    "name": "addItem",
+    "body": {
+      "generic": [
+        "$this->Items"
+      ],
+      "arrays": [
+        "$this->Items"
+      ],
+      "methods": [
+        "$this->refreshTotals"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": [
+      {
+        "n": "$output",
+        "v": "\"HTML\""
+      }
+    ],
+    "access": "public",
+    "line": "22",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "debug",
+    "body": {
+      "generic": [],
+      "arrays": [],
+      "methods": [
+        "$this->test"
+      ]
+    },
+    "isStatic": false
+  },
+  {
+    "docblock": "",
+    "class": "Cart",
+    "namespace": "",
+    "signature": false,
+    "access": "public",
+    "line": "27",
+    "item": "class_method",
+    "file": "/projects/PHP-CodeGraph/demo/Cart.php",
+    "name": "refreshTotals",
+    "body": {
+      "generic": [
+        "$this->Items",
+        "$this->Totals"
+      ],
+      "arrays": [],
+      "methods": []
+    },
+    "isStatic": false
+  }
+]

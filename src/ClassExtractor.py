@@ -1,13 +1,37 @@
+# The MIT License (MIT)
+
+# Copyright (c) 2014 Bogdan Anton
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+import time
 import re, os, io
 from time import sleep
 import json
+from FunctionBodyExtractor import FunctionBodyExtractor
 
-class MethodExtractor():
+class ClassExtractor():
     allFilesList      = []
     allowedExtensions = ['php']
     excludeFolders    = ['tests', '.git']
     outlineIndex      = []
-    limitFiles        = 10000000000000000000000000
+    limitFiles        = 0
     cursorFiles       = 0
 
     listVariableKeywords  = ['public', 'private', 'protected', 'var', 'static']
@@ -15,27 +39,20 @@ class MethodExtractor():
     listFunctionAccess    = ['public', 'private', 'protected']
     listFunctionStatic    = ['static']
 
-    FLAG_processMethodBody        = False
-    FLAG_processMethodSignature   = False
-    FLAG_processClassConstants    = False
-    FLAG_processClassAttributes   = False
-    FLAG_processJSONOutput        = False
-    FLAG_processTestFileGenerator = True
-    FLAG_manualPath               = True
-    PATH_basePathRepository       = "/home/bogdana/workspace/avangate.secure.git/"
-    PATH_logOutput                = 'logs';
-    PATH_sourceRepository         = "secure"
-    PATH_testRepository           = "tests-automatic"
+    config = {
+        'basepath': '',
+        'logpath': '/var/log/',
+        'debug': False,
+        'flag.processMethodBody': True,
+        'flag.processMethodSignature': True,
+        'flag.processClassConstants': True,
+        'flag.processClassAttributes': True,
+        'flag.processJSONOutput': True
+    }
 
     logData = []
 
     # transient flags
-    currentClass                  = ""
-    currentIsComment              = False
-    currentIsMethod               = False
-    currentIsStringInSingleQuotes = False
-    currentIsStringInDoubleQuotes = False
-    currentIsPHP                  = False
     previousChar                  = ""
     previous2Char                 = ""
     previousWord                  = ""
@@ -43,6 +60,12 @@ class MethodExtractor():
     previous3Word                 = ""
     previous4Word                 = ""
     previous5Word                 = ""
+    currentClass                  = ""
+    currentIsComment              = False
+    currentIsMethod               = False
+    currentIsStringInSingleQuotes = False
+    currentIsStringInDoubleQuotes = False
+    currentIsPHP                  = False
     currentLineCursor             = -1;
     currentClassName              = ""
     currentClassAccess            = ""
@@ -67,19 +90,22 @@ class MethodExtractor():
     isInsidePHPShortBlock         = False
     cursorCharacter               = ""
 
-    def writeJSONOutput(self):
-        if (self.FLAG_processJSONOutput):
-            self.make_sure_path_exists(self.PATH_basePathRepository + '/' + self.PATH_logOutput)
-            with open(os.path.join(self.PATH_basePathRepository + '/' + self.PATH_logOutput, 'index_folders.json'), 'w') as file:
-                file.write(json.dumps(self.logData))
+    def getConfig(self, key):
+        return self.config[key]
+
+    def setConfig(self, key, value):
+        self.config[key] = value
+        return True
 
     def processMain(self):
-        if (self.FLAG_processTestFileGenerator and self.FLAG_manualPath):
-            self.make_sure_path_exists(self.PATH_basePathRepository + '/' + self.PATH_testRepository)
+        self.traverseFolders(self.getConfig('basepath'))
 
         for filepath in self.allFilesList:
             if (self.limitFiles == 0 or (self.limitFiles > 0 and self.limitFiles >= self.cursorFiles)):
                 try:
+                    if (self.getConfig('debug')):
+                        print(filepath)
+
                     self.processFile(filepath)
                 except UnicodeDecodeError:
                     pass
@@ -104,7 +130,7 @@ class MethodExtractor():
         return False
 
     def extractClassAttribute(self, char, filepath):
-        if (self.FLAG_processClassAttributes == False):
+        if (self.getConfig('flag.processClassAttributes') == False):
             return False
 
         isAClassVariableKeyword = self.isAClassVariableKeyword()
@@ -150,7 +176,7 @@ class MethodExtractor():
             self.currentClassAttribute += char
 
     def extractClassConstant(self, char, filepath):
-        if (self.FLAG_processClassConstants == False):
+        if (self.getConfig('flag.processClassConstants') == False):
             return False
 
         isAClassConstantKeyword = self.isAClassConstantKeyword()
@@ -346,25 +372,32 @@ class MethodExtractor():
                                         isStatic = ""
                                         functionAccess = ""
 
-                                    if (functionSignature != False):
-                                        docblock = self.latestDocblock.replace("\n\t", "\n")
+                                    docblock = self.latestDocblock.replace("\n\t", "\n")
 
-                                        logDataEntry              = {}
-                                        logDataEntry['item']      = 'class_method'
-                                        logDataEntry['name']      = self.currentFunctionName
-                                        logDataEntry['file']      = filepath
-                                        logDataEntry['line']      = str(self.currentLineCursor)
-                                        logDataEntry['namespace'] = namespace
-                                        logDataEntry['class']     = className
-                                        logDataEntry['isStatic']  = isStaticBool
-                                        logDataEntry['access']    = functionAccess
-                                        logDataEntry['signature'] = functionSignature
-                                        logDataEntry['docblock']  = docblock
-                                        logDataEntry['body']      = self.currentFunctionBody
+                                    logDataEntry              = {}
+                                    logDataEntry['item']      = 'class_method'
+                                    logDataEntry['name']      = self.currentFunctionName
+                                    logDataEntry['file']      = filepath
+                                    logDataEntry['line']      = str(self.currentLineCursor)
+                                    logDataEntry['namespace'] = namespace
+                                    logDataEntry['class']     = className
+                                    logDataEntry['isStatic']  = isStaticBool
+                                    logDataEntry['access']    = functionAccess
+                                    logDataEntry['signature'] = functionSignature
+                                    logDataEntry['docblock']  = docblock
+                                    logDataEntry['body']      = self.getFunctionBody(functionSignature, self.currentFunctionBody)
 
-                                        self.logData.append(logDataEntry)
-                                        self.generateTestFile(logDataEntry)
-                                        # print(logDataEntry)
+                                    self.logData.append(logDataEntry)
+
+                                    if ((logDataEntry['class']) and (self.getConfig('debug'))):
+                                        print("")
+                                        print("=====================================")
+                                        if (isStaticBool):
+                                            print(logDataEntry['class'] + "::" + logDataEntry['name'])
+                                        else:
+                                            print(logDataEntry['class'] + "->" + logDataEntry['name'])
+    
+                                        print(logDataEntry['body'])
 
                                 # clean
                                 self.currentFunctionName = ""
@@ -391,11 +424,24 @@ class MethodExtractor():
         file.close()
         pass
 
+    def getFunctionBody(self, functionSignature, functionBody):
+        functionBodyExtractor = FunctionBodyExtractor()
+        functionBodyExtractor.signature = functionSignature
+        functionBodyExtractor.body = functionBody
+
+        return functionBodyExtractor.extract()
+
+    def isWordMethodCall(self, word):
+        if ("::" in word or "->" in word):
+            return True
+        else:
+            return False
+
     def registerCurrentChar(self, cursorCharacter):
         self.cursorCharacter = cursorCharacter
 
     def collectFunctionBody(self):
-        if (self.FLAG_processMethodBody):
+        if (self.getConfig('flag.processMethodBody')):
             if (((self.currentBracketLevel > 1) and (self.currentClassName != "")) or ((self.currentBracketLevel > 0) and (self.currentClassName == ""))):
                 self.currentFunctionBody += self.cursorCharacter
 
@@ -406,7 +452,7 @@ class MethodExtractor():
         return namespace
 
     def processFunctionSignature(self, originalSignature):
-        if (self.FLAG_processMethodSignature == False):
+        if (self.getConfig('flag.processMethodSignature') == False):
             return ""
 
         signature = originalSignature.strip()[1:-1].strip()
@@ -443,7 +489,7 @@ class MethodExtractor():
                                 if (m):
                                     variableType = str(m[0])
                                     try:
-                                        description = m[1]
+                                        description = str(m[1])
                                     except IndexError:
                                         pass
                                 else:
@@ -461,8 +507,11 @@ class MethodExtractor():
                     if (defaultValue.strip() != ""):
                         signatureArgument['v'] = defaultValue.strip()
 
-                    if (description.strip() != ""):
-                        signatureArgument['d'] = description
+                    try:
+                        if (description.strip() != ""):
+                            signatureArgument['d'] = description
+                    except AttributeError:
+                        pass
 
                     signatureArgument['n'] = variable
 
@@ -566,49 +615,14 @@ class MethodExtractor():
                 if (subFolder != '.git' and subFolder != 'tests'):
                     self.traverseFolders(subFolder)
 
-    def generateTestFile(self, entry):
-        if (self.FLAG_processTestFileGenerator and self.FLAG_manualPath):
-            # PATH_testRepository
-            if (entry['class'] != ""):
-
-                entryFile = entry['file'].replace(self.PATH_basePathRepository + '/' + self.PATH_sourceRepository, "")
-                entryFileStructure = entryFile.split('/')
-
-                try:
-                    entryFileStructure.remove("")
-                except ValueError:
-                    pass
-
-                entryFileStructure.pop()
-
-                folder = self.PATH_basePathRepository + '/' + self.PATH_testRepository + '/' + '/'.join(entryFileStructure) + '/' + entry['class']
-                self.make_sure_path_exists(folder)
-
-                createBaseText = """<?php
-
-class """+entry['class']+'_' + entry['name'] + """ extends PHPUnit_Framework_TestCase {
-
-    public function testBlank(){
-        $this->markTestSkipped('Auto generated method using a py scraper');
-    }
-
-}"""
-                outputFile = folder + '/' + entry['name'] + 'Test.php'
-
-                if (os.path.isfile(outputFile) == False):
-                    print(folder + " | " + entry['name'] + 'Test.php' + " | " + entry['class'] + " | " + entry['name'] + " | " + entryFile + " | " + entry['line'])
-                    with io.open(outputFile, 'w', encoding='utf-8') as f:
-                        f.write(createBaseText)
-
-                # print(entryFileStructure)
-                # print(entry['namespace'])
-                # print(entryFile)
-                # print(entry['class'])
-                # print(entry['name'])
-                # print(createBaseText)
-
     def make_sure_path_exists(self, path):
         try:
             os.makedirs(path)
         except OSError as exception:
             pass
+
+    def writeJSONOutput(self):
+        if (self.getConfig('flag.processJSONOutput')):
+            self.make_sure_path_exists(self.getConfig('logpath'))
+            with open(self.getConfig('logpath') + 'index_folders.json', 'w') as file:
+                file.write(json.dumps(self.logData))
