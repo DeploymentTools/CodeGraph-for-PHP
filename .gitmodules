@@ -1,0 +1,6 @@
+[submodule "utils/Sublime-CodeGraphDev"]
+	path = utils/Sublime-CodeGraphDev
+	url = https://github.com/bogdananton/Sublime-CodeGraphDev
+[submodule "utils/PHPUnit-TestFiles-Generator"]
+	path = utils/PHPUnit-TestFiles-Generator
+	url = https://github.com/bogdananton/PHPUnit-TestFiles-Generator

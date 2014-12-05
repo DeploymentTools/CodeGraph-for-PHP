@@ -1,5 +1,4 @@
 /phing-latest.phar
-/build/phpcg.exe
-/build/phpcg
+/build/
 /src/FunctionBodyExtractor.pyc
 /src/ClassExtractor.pyc

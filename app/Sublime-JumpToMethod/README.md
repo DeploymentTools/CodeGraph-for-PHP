@@ -1,1 +1,0 @@
-Will scan the active projects for code structure and inclusions, then generate a JSON log file.
