@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<project name="PHP-CodeGraph" default="build" basedir=".">
+	<target name="build">
+		<delete dir="build"/>
+		<mkdir dir="build"/>
+		<exec command="cxfreeze src/phpcg.py --target-dir build/"></exec>
+		<zip destfile="build/JumpToMethod.zip">
+			<fileset dir="app/" includes="Sublime-JumpToMethod/**"/>
+		</zip>
+	</target>
+</project>
