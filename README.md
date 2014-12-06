@@ -8,6 +8,8 @@ Attributes:
     --log        The path to the writable folder to dump the JSON log into
 ```
 
-Access [the releases](https://github.com/bogdananton/PHP-CodeGraph/releases) page for Windows and Linux command line binaries,
-
 Check out the [JSON file](https://github.com/bogdananton/PHP-CodeGraph/blob/master/demo/index_folders.json) for details on the output.
+
+**Download**
+
+Access the [releases page](https://github.com/bogdananton/PHP-CodeGraph/releases) to download Windows and Linux command line binaries.
