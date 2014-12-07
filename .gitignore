@@ -2,3 +2,6 @@
 /build/
 /src/FunctionBodyExtractor.pyc
 /src/ClassExtractor.pyc
+/src/__pycache__/ClassExtractor.cpython-34.pyc
+/src/__pycache__/FunctionBodyExtractor.cpython-34.pyc
+/src/__pycache__/phpcg.cpython-34.pyc
