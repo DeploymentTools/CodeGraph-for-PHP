@@ -67,4 +67,8 @@ class FunctionBodyExtractor():
 
         response['generic'] = list(set(class_attributes))
 
+        response['arrays'].sort()
+        response['methods'].sort()
+        response['generic'].sort()
+
         return response
