@@ -1,3 +1,5 @@
+![](https://travis-ci.org/bogdananton/PHP-CodeGraph.svg?branch=master)
+
 Utility that analizes a PHP project and extracts details on the structure and interactions between (class) methods.
 
 ```
