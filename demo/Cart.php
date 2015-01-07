@@ -65,4 +65,35 @@ class Cart
 	{
 		$this->Totals = 100 * count($this->Items);
 	}
+
+	/**
+	 * Place order. Enter customer details.
+	 *
+	 * @throws Exception if no items in cart or empty customer name / address
+	 * @param  string $CustomerName
+	 * @param  string $CustomerAddress
+	 * @return bool
+	 */
+	public function placeOrder($CustomerName, $CustomerAddress)
+	{
+		if (empty($this->Items)) {
+			throw new Exception("No products in cart.", 1);
+		}
+
+		if (empty($CustomerName) || empty($CustomerAddress)) {
+			throw new Exception("No billing details set.", 1);
+		}
+
+		$Billing = new BillingObj();
+		$Billing->CustomerName = $CustomerName;
+		$Billing->CustomerAddress = $CustomerAddress;
+
+		$order = new Order();
+		$order->setIP($_SERVER['REMOTE_ADDR']);
+		$order->setProducts($this->Items);
+		$order->setBilling($Billing);
+		$order->save();
+
+		return true;
+	}
 }
