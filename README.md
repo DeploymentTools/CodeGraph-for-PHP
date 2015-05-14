@@ -1,4 +1,5 @@
-![](https://travis-ci.org/bogdananton/PHP-CodeGraph.svg?branch=master)
+![](https://travis-ci.org/DeploymentTools/CodeGraph-for-PHP.svg?branch=master)
+[![Code Climate](https://codeclimate.com/github/DeploymentTools/CodeGraph-for-PHP/badges/gpa.svg)](https://codeclimate.com/github/DeploymentTools/CodeGraph-for-PHP)
 
 Utility that analizes a PHP project and extracts details on the structure and interactions between (class) methods.
 
@@ -10,8 +11,8 @@ Attributes:
     --log        The path to the writable folder to dump the JSON log into
 ```
 
-Check out the [JSON file](https://github.com/bogdananton/PHP-CodeGraph/blob/master/demo/index_folders.json) for details on the output.
+Check out the [JSON file](https://github.com/DeploymentTools/CodeGraph-for-PHP/blob/master/demo/index_folders.json) for details on the output.
 
 **Download**
 
-Access the [releases page](https://github.com/bogdananton/PHP-CodeGraph/releases) to download Windows and Linux command line binaries.
+Access the [releases page](https://github.com/bogdananton/DeploymentTools/CodeGraph-for-PHP/releases) to download Windows and Linux command line binaries.
