@@ -1,5 +1,5 @@
-![](https://travis-ci.org/DeploymentTools/CodeGraph-for-PHP.svg?branch=master)
-[![Code Climate](https://codeclimate.com/github/DeploymentTools/CodeGraph-for-PHP/badges/gpa.svg)](https://codeclimate.com/github/DeploymentTools/CodeGraph-for-PHP)
+[](https://travis-ci.org/DeploymentTools/CodeGraph-for-PHP)
+[](https://codeclimate.com/github/DeploymentTools/CodeGraph-for-PHP)
 
 Utility that analizes a PHP project and extracts details on the structure and interactions between (class) methods.
 
