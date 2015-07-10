@@ -60,81 +60,67 @@ class TestAnaliseFlags(unittest.TestCase):
         self.fbe = FunctionBodyExtractor()
 
     def assert_flags(self, expect_in_single_quotes, expect_in_double_quotes, expect_in_single_comment, expect_in_multi_line_comment):
-        self.assertEqual(expect_in_single_quotes, self.fbe.in_single_quotes)
-        self.assertEqual(expect_in_double_quotes, self.fbe.in_double_quotes)
-        self.assertEqual(expect_in_single_comment, self.fbe.in_single_comment)
-        self.assertEqual(expect_in_multi_line_comment, self.fbe.in_multi_line_comment)
+        self.assertEqual(expect_in_single_quotes, self.fbe.SQ)
+        self.assertEqual(expect_in_double_quotes, self.fbe.DQ)
+        self.assertEqual(expect_in_single_comment, self.fbe.SLC)
+        self.assertEqual(expect_in_multi_line_comment, self.fbe.MLC)
+
+    def set_content_and_run_assert(self, content, SQ, DQ, SLC, MLC):
+        self.fbe.phrase_content = content
+        self.fbe.analyse_flags()
+        self.assert_flags(SQ, DQ, SLC, MLC)
 
     def test_when_string_opened_single_quotes_then_change_single_quote_to_true_if_all_other_flags_are_false(self):
-        self.fbe.phrase_content = "$a = '"
-        self.fbe.analyse_flags()
-        self.assert_flags(True, False, False, False)
+        self.set_content_and_run_assert("$a = '", True, False, False, False)
 
     def test_when_string_opened_double_quotes_then_change_double_quote_to_true_if_all_other_flags_are_false(self):
-        self.fbe.phrase_content = '$a = "'
-        self.fbe.analyse_flags()
-        self.assert_flags(False, True, False, False)
+        self.set_content_and_run_assert('$a = "', False, True, False, False)
 
     def test_when_string_opened_single_quotes_and_is_in_single_line_comment_then_dont_change_single_quote_flag(self):
-        self.fbe.in_single_comment = True
-        self.fbe.phrase_content = '$a = "'
-        self.fbe.analyse_flags()
-        self.assert_flags(False, False, True, False)
+        self.fbe.SLC = True
+        self.set_content_and_run_assert('$a = "', False, False, True, False)
 
     def test_when_string_opened_single_quotes_and_is_in_multiline_comment_then_dont_change_single_quote_flag(self):
-        self.fbe.in_multi_line_comment = True
-        self.fbe.phrase_content = '$a = "'
-        self.fbe.analyse_flags()
-        self.assert_flags(False, False, False, True)
+        self.fbe.MLC = True
+        self.set_content_and_run_assert('$a = "', False, False, False, True)
 
     def test_when_not_in_quotes_and_is_start_of_single_line_comment_then_change_single_line_flag(self):
-        self.fbe.phrase_content = '$a = 1; //'
-        self.fbe.analyse_flags()
-        self.assert_flags(False, False, True, False)
+        self.set_content_and_run_assert('$a = 1; //', False, False, True, False)
 
     def test_when_in_quotes_and_is_start_of_single_line_comment_then_dont_change_single_line_flag(self):
         # single quotes
-        self.fbe.in_single_quotes = True
+        self.fbe.SQ = True
 
         self.fbe.phrase_content = '$a = 1; //'
         self.fbe.analyse_flags()
 
-        self.fbe.in_single_quotes = False # reset
+        self.fbe.SQ = False # reset
         self.assert_flags(False, False, False, False)
 
         # double quotes
-        self.fbe.in_double_quotes = True
+        self.fbe.DQ = True
 
         self.fbe.phrase_content = '$a = 1; //'
         self.fbe.analyse_flags()
 
-        self.fbe.in_double_quotes = False # reset
+        self.fbe.DQ = False # reset
         self.assert_flags(False, False, False, False)
 
     def test_when_not_in_quotes_and_is_start_of_multi_line_comment_then_change_multi_line_flag(self):
-        self.fbe.phrase_content = '$a = 1; /*'
-        self.fbe.analyse_flags()
-        self.assert_flags(False, False, False, True)
+        self.set_content_and_run_assert('$a = 1; /*', False, False, False, True)
 
     def test_when_in_quotes_and_is_start_of_multi_line_comment_then_dont_change_multi_line_flag(self):
         # single quotes
-        self.fbe.in_double_quotes = True
-        self.fbe.phrase_content = '$a = 1; /*'
-        self.fbe.analyse_flags()
-        self.fbe.in_double_quotes = False
-        self.assert_flags(False, False, False, False)
+        self.fbe.DQ = True
+        self.set_content_and_run_assert('$a = 1; /*', False, True, False, False)
+        self.fbe.DQ = False
 
         # double quotes
-        self.fbe.in_single_quotes = True
-        self.fbe.phrase_content = '$a = 1; /*'
-        self.fbe.analyse_flags()
-        self.fbe.in_single_quotes = False
-        self.assert_flags(False, False, False, False)
+        self.fbe.SQ = True
+        self.set_content_and_run_assert('$a = 1; /*', True, False, False, False)
 
     def test_when_in_single_line_comment_and_is_multi_line_comment_then_change_multi_line_flag(self):
-        self.fbe.phrase_content = "$a = 1; //"
-        self.fbe.analyse_flags()
-        self.assert_flags(False, False, True, False)
+        self.set_content_and_run_assert("$a = 1; //", False, False, True, False)
 
         self.fbe.phrase_content = """$a = 1; //
 """
@@ -167,13 +153,13 @@ class TestAnaliseFlags(unittest.TestCase):
         self.assert_flags(False, False, False, False)
 
     def test_when_latest_char_is_end_of_line_then_reset_single_comment_flag(self):
-        self.fbe.in_single_comment = True
+        self.fbe.SLC = True
         self.fbe.phrase_content = """$a = 1;
 """
         self.fbe.analyse_flags()
         self.assert_flags(False, False, False, False)
 
-        self.fbe.in_single_comment = True
+        self.fbe.SLC = True
         self.fbe.phrase_content = """$a = 1;\n"""
         self.fbe.analyse_flags()
         self.assert_flags(False, False, False, False)
