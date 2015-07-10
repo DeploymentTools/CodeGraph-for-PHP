@@ -51,10 +51,15 @@ class FunctionBodyExtractor():
     #     if ((existing_thoughts_nr > 0) and (self.get_last_thought() != thought)) or (existing_thoughts_nr == 0):
     #         self.current_phrase['thinking_about'].append(thought)
 
-    in_single_quotes = False
-    in_double_quotes = False
-    in_single_comment = False
-    in_multi_line_comment = False
+    # flags
+    SQ = False  # is in single quote
+    DQ = False  # is in double quote
+    SLC = False # is in single line comment
+    MLC = False # is in multi line comment
+
+    cChar = ""
+    pChar = ""
+
     is_end_of_phrase = False
 
     def get_char(self, content, offset_end):
@@ -71,50 +76,52 @@ class FunctionBodyExtractor():
 
         return char
 
+    def analyse_flags_quotes(self, expect, change_flag, override_flag):
+        if (self.cChar == expect) and (self.pChar != '\\') and not override_flag:
+            return not change_flag
+        return change_flag
+
     def analyse_flags(self):
         current_phrase_content = self.phrase_content
 
-        current_char = self.get_char(current_phrase_content, -1)
-        previous_char = self.get_char(current_phrase_content, -2)
+        self.cChar = self.get_char(current_phrase_content, -1)
+        self.pChar = self.get_char(current_phrase_content, -2)
 
         # print('---->' + current_phrase_content + '<----')
 
-        if not self.in_single_comment and not self.in_multi_line_comment:
-            if (current_char == "'") and (previous_char != '\\') and (self.in_double_quotes is False):
-                self.in_single_quotes = not self.in_single_quotes
+        if not self.SLC and not self.MLC:
+            self.DQ = self.analyse_flags_quotes('"', self.DQ, self.SQ)
+            self.SQ = self.analyse_flags_quotes("'", self.SQ, self.DQ)
 
-            if (current_char == '"') and (previous_char != '\\') and (self.in_single_quotes is False):
-                self.in_double_quotes = not self.in_double_quotes
-
-        if not self.in_single_quotes and not self.in_double_quotes:
-            if not self.in_multi_line_comment and (current_char == "/") and (previous_char == '/') and not self.in_single_comment:
-                self.in_single_comment = True
+        if not self.SQ and not self.DQ:
+            if not self.MLC and (self.cChar == "/") and (self.pChar == '/') and not self.SLC:
+                self.SLC = True
                 # store current phrase, to resume after exiting from line comment. Strip the single line comment "//" chars
                 self.phrase_transient_content = self.phrase_content[0:-2]
                 # wipe current phrase, will be restored after phrase end
                 self.phrase_content = ''
                 # print('begin single comment')
 
-            if (current_char == "*") and (previous_char == '/') and (not self.in_multi_line_comment) and (not self.in_single_comment):
-                self.in_multi_line_comment = True
+            if (self.cChar == "*") and (self.pChar == '/') and (not self.MLC) and (not self.SLC):
+                self.MLC = True
                 # self.phrase_transient_content = self.phrase_content
                 # print('begin multiline')
 
-            if (current_char == "/") and (previous_char == '*') and (self.in_multi_line_comment is True):
-                self.in_multi_line_comment = False
+            if (self.cChar == "/") and (self.pChar == '*') and (self.MLC is True):
+                self.MLC = False
                 # self.phrase_transient_content = self.phrase_content
                 self.phrase_content = ''
                 # print('end multiline')
 
-            if ((current_char == os.linesep) or (current_char == "\n") or (current_char == "\r\n")) and self.in_single_comment:
-                self.in_single_comment = False
+            if ((self.cChar == os.linesep) or (self.cChar == "\n") or (self.cChar == "\r\n")) and self.SLC:
+                self.SLC = False
                 # print('end single comment')
 
                 # if not self.in_multi_line_comment:
                 self.phrase_content = self.phrase_transient_content
                 # print('reset phrase content')
 
-        if (current_char == ';') and not self.in_single_comment and not self.in_multi_line_comment and not self.in_single_quotes and not self.in_double_quotes:
+        if (self.cChar == ';') and not self.SLC and not self.MLC and not self.SQ and not self.DQ:
             self.is_end_of_phrase = True
 
     def analise_phrase(self):
@@ -136,13 +143,13 @@ class FunctionBodyExtractor():
         #     self.current_phrase['subject'] = startsWithVariable
         #     self.think_about('building_variable')
     
-        # elif (self.current_phrase['action'] == 'variable_prepare') and (current_char == '='):
+        # elif (self.current_phrase['action'] == 'variable_prepare') and (self.current_char == '='):
         #     self.current_phrase['action'] = 'variable_set'
         #     self.think_about('waiting_for_variable_set')
-        #     self.current_char.entities.append()
+        #     self.self.current_char.entities.append()
 
 
-        # if (current_char == '"') or (current_char == "'"):
+        # if (self.current_char == '"') or (self.current_char == "'"):
         #     if (self.get_last_thought() == 'listening_for_string'):
         #         self.think_about('stop_listening_for_string')
 
