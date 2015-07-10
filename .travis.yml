@@ -9,3 +9,9 @@ script: python tests/starter.py
 branches:
   only:
     - master
+    
+before_install:
+    - pip install pytest pytest-cov
+
+after_success:
+    - coveralls
